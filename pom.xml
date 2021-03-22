@@ -3,15 +3,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ncredinburgh</groupId>
-  <artifactId>maven-release-yearly-policy</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <groupId>com.m-creations</groupId>
+  <artifactId>maven-release-changelist-policy</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Maven Release Yearly Policy</name>
+  <name>Maven Release Changelist Policy</name>
   <description>Versioning policy for use with Maven's maven-release-plugin, specifies a versioning
-    scheme along the lines of that currently used by IntelliJ, namely year.major.minor.</description>
-  <url>https://github.com/ncredinburgh/maven-release-yearly-policy</url>
+    scheme where the CI friendly Maven property 'changelist' is used instead of '-SNAPSHOT'.</description>
+  <url>https://github.com/m-creations/maven-release-changelist-policy</url>
 
   <licenses>
     <license>
@@ -22,34 +22,43 @@
 
   <developers>
     <developer>
+      <name>Kambiz Darabi</name>
+      <email>darabi@m-creations.net</email>
+      <organization>m-creations GmbH</organization>
+      <organizationUrl>http://www.m-creations.com</organizationUrl>
+    </developer>
+    <!-- Author of the original maven-release-yearly-policy:
+    <developer>
       <name>Keir Lawson</name>
       <email>keir.lawson@ncr.com</email>
       <organization>NCR Edinburgh</organization>
       <organizationUrl>http://www.ncredinburgh.com</organizationUrl>
     </developer>
+    -->
   </developers>
 
   <scm>
-    <connection>scm:git:https://github.com/ncredinburgh/maven-release-yearly-policy.git</connection>
-    <developerConnection>scm:git:ssh://github.com/ncredinburgh/maven-release-yearly-policy.git</developerConnection>
-    <url>https://github.com/ncredinburgh/maven-release-yearly-policy/tree/master</url>
+    <connection>scm:git:https://github.com/m-creations/maven-release-changelist-policy.git</connection>
+    <developerConnection>scm:git:ssh://github.com/m-creations/maven-release-changelist-policy.git</developerConnection>
+    <url>https://github.com/m-creations/maven-release-changelist-policy/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
   <properties>
+    <version.release-plugin>3.0.0-M1</version.release-plugin>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.scm.id>github.com</project.scm.id>
+    <project.scm.id>github.com/m-creations</project.scm.id>
   </properties>
 
   <distributionManagement>
     <snapshotRepository>
-      <id>ossrh</id>
+      <id>ossrh-snapshots</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <repository>
-      <id>ossrh</id>
+      <id>ossrh-releases</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
@@ -58,12 +67,17 @@
     <dependency>
       <groupId>org.apache.maven.release</groupId>
       <artifactId>maven-release-api</artifactId>
-      <version>2.5.3</version>
+      <version>${version.release-plugin}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.release</groupId>
       <artifactId>maven-release-manager</artifactId>
-      <version>2.5.3</version>
+      <version>${version.release-plugin}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
     </dependency>
 
     <dependency>
@@ -110,7 +124,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
+      <version>${version.release-plugin}</version>
         <configuration>
           <tagNameFormat>v@{project.version}</tagNameFormat>
           <useReleaseProfile>false</useReleaseProfile>

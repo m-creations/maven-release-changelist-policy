@@ -1,3 +1,20 @@
-target/
-.idea/
-*.iml
+# Backup files of different editors (vi, emacs)
+
+*.bak
+*.swp
+*~
+.#*
+\#*#
+
+# Maven and IDE artifacts
+
+/target/
+/.apt_generated/
+/.apt_generated_tests/
+/.project
+/.classpath
+/.settings
+/*.iml
+/.factorypath
+/.idea
+/.flattened-pom.xml

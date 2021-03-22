@@ -52,7 +52,7 @@ public class ChangelistVersionPolicy implements VersionPolicy {
         if (version.endsWith(snapshotPostfix)) {
             version = StringUtils.removeEnd(version, snapshotPostfix);
         } else if (version.endsWith(changelistPostfix)) {
-            version = StringUtils.removeEnd(version, snapshotPostfix);
+            version = StringUtils.removeEnd(version, changelistPostfix);
         }
 
         String nextVersion = new DefaultVersionInfo(version).getNextVersion().getReleaseVersionString();
